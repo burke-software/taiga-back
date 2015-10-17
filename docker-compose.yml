@@ -1,0 +1,19 @@
+db:
+  image: postgres
+redis:
+  image: redis
+amqp:
+  image: rabbitmq
+web:
+  build: .
+  command: ./run-docker.sh
+  volumes:
+    - .:/code
+  ports:
+    - "8000:8000"
+  links:
+    - db
+    - redis
+    - amqp
+  environment:
+    - C_FORCE_ROOT=True
