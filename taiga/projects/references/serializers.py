@@ -23,4 +23,5 @@ class ResolverSerializer(serializers.Serializer):
     us = serializers.IntegerField(required=False)
     task = serializers.IntegerField(required=False)
     issue = serializers.IntegerField(required=False)
+    ref = serializers.IntegerField(required=False)
     wikipage = serializers.CharField(max_length=512, required=False)

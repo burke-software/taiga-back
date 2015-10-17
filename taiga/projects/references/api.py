@@ -59,4 +59,18 @@ class ResolverViewSet(viewsets.ViewSet):
             result["wikipage"] = get_object_or_404(project.wiki_pages.all(),
                                                    slug=data["wikipage"]).pk
 
+        if data["ref"]:
+            if user_has_perm(request.user, "view_us", project):
+                us = project.user_stories.filter(ref=data["ref"]).first()
+                if us:
+                    result["us"] = us.pk
+            if user_has_perm(request.user, "view_tasks", project):
+                task = project.tasks.filter(ref=data["ref"]).first()
+                if task:
+                    result["task"] = task.pk
+            if user_has_perm(request.user, "view_issues", project):
+                issue = project.issues.filter(ref=data["ref"]).first()
+                if issue:
+                    result["issue"] = issue.pk
+
         return response.Ok(result)
