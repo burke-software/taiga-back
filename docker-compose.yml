@@ -17,3 +17,4 @@ web:
     - amqp
   environment:
     - C_FORCE_ROOT=True
+    - DJANGO_SETTINGS_MODULE=settings.docker_development

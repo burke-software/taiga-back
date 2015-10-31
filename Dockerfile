@@ -4,4 +4,6 @@ RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
+ADD requirements-devel.txt /code/
+RUN pip install -r requirements-devel.txt
 ADD . /code/
